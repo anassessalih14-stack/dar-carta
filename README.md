@@ -1,5 +1,12 @@
 # Dar Carta · دار الكارطة
 
+**[Open the live friend-testing game](https://dar-carta-friends.proudwand259.chatgpt.site/)**
+
+Choose **Create a room / حل طابلة**, enter a nickname, select Ronda or Brisca and 2 or 4 players, then share the six-character room code. Friends open the same link and choose **Join a room / دخل لطابلة**. The host starts once every seat is filled.
+
+The hosted source is in [`online/`](online/). This is the initial multiplayer test; traditional card artwork, shuffle/deal animations, and animated point celebrations are still planned for the next iteration.
+
+
 A first playable Moroccan card club, built for iterative development before an Android release.
 
 ## What is working
