@@ -8,7 +8,7 @@ function apply(state,route,method,token,body,now){
   const {sessions,rooms}=state;
   for(const [code,r] of Object.entries(rooms))if(now-r.updated>6*3600000){for(const id of r.players)if(sessions[id])sessions[id].room=null;delete rooms[code];}
   for(const [id,p] of Object.entries(sessions))if(now-p.seen>24*3600000)delete sessions[id];
-  const options=b=>{if(!['ronda','brisca','balote'].includes(b.mode)||![2,4].includes(b.count)||b.mode==='balote'&&b.count!==4)error('Invalid table settings');return {mode:b.mode,count:b.count,target:[250,500,1000].includes(b.target)?b.target:500,forceJack:b.forceJack!==false};};
+  const options=b=>{if(!['ronda','brisca','balote'].includes(b.mode)||![2,4].includes(b.count)||b.mode==='balote'&&b.count!==4)error('Invalid table settings');return {mode:b.mode,count:b.count,target:[250,500,1000].includes(b.target)?b.target:500,forceJack:b.forceJack===true};};
   const touch=r=>{r.updated=now;r.revision++;};
   const roomFor=p=>p.room?rooms[p.room]:null;
   const begin=r=>{r.game=createGame(r.mode,r.count,rng,{target:r.target,forceJack:r.forceJack});r.deadline=now+45000;touch(r);};

@@ -5,7 +5,7 @@ The refreshed interface uses a felt table, illustrated Spanish cards, fanned han
 ## Playable games
 
 - **Ronda**: 40 cards, two players or four-player partnerships, first to 41. The original rules profile remains available in the game.
-- **Moroccan Balote**: 32 cards, four-player partnerships, two bidding rounds, optional forced take on a face-up 10, legal-card enforcement, declarations, automatic Belote/Rebelote, Chute, Litige, Capot and final-score deciders. Private tables can choose 250, 500 or 1000 points. This version defaults to 500 and uses an explicit rule that four-of-a-kind announcements outrank runs; house rules are documented in the game.
+- **Moroccan Balote**: 32 cards, four-player partnerships, two bidding rounds, optional forced take on a face-up 10, legal-card enforcement, declarations, automatic Belote/Rebelote, Chute, Litige, Capot and final-score deciders. Practice and online setup offer first to 500 or 1000 points before the deal. Buying rotates through all four seats, with passed seats marked and a persistent bought-suit / buyer-team label. The forced face-up 10 option is off by default for new matches. This version defaults to 500 and uses an explicit rule that four-of-a-kind announcements outrank runs; house rules are documented in the game.
 - **Brisca**: 40 cards, two players or four-player partnerships, trump tricks and 120-point scoring.
 
 The Balote reference informed the traditional table style and documented Moroccan rules; its proprietary artwork and application code were not copied. The corrected Moroccan card faces use the Alb1bls CC0 scan; the retained card back is CC BY-SA 3.0: see `public/cards/CREDITS.md` and its per-file manifest.
