@@ -26,6 +26,18 @@ Reference: https://www.nhfournier.es/en/como-jugar/brisca/
 
 - Touti/Tute: confirmed Spanish-deck family; multiple rule variants. Start from Fournier's documented versions, then confirm the intended Moroccan variant.
 - “Cant coupé”: the owner's spelling has not yet identified a reliable rules source. Do not silently map it to a different game.
-- Balot: confirm the intended deck, bidding, and scoring before choosing between regional games with similar names.
+- Saudi Baloot remains a different game and is not included. The Moroccan Balote profile below is implemented.
 
 These queued modes are clearly labelled as future work in the app and cannot be selected as playable games.
+
+## Moroccan Balote — `balote-v0.2`
+
+Reference: https://balote.pocketoak.com/en/rules — a publisher-defined Moroccan profile, not a universal claim about every family’s house rules.
+
+Four opposite partners, 32 Spanish cards (remove 2s and 3s), five-card first deal and an offer, two bidding rounds, eight cards after a successful bid. A face-up 10 forces the first bidder when enabled. First lead is the player after the buyer. Trump order: 10, 6, 1, 7, 12, 11, 5, 4; plain order: 1, 7, 12, 11, 10, 6, 5, 4. Follow suit, beat a trump lead when possible, and cut/overcut when void and an opponent is winning.
+
+Declarations are optional and must be made before playing the second card. The server computes disjoint declarations from the original hand. Runs score 20/50/100; fours score 200 for 10, 150 for 6, 100 for 1/7/11/12. In this explicit implementation, fours outrank runs, then the strongest set/run determines the only team whose declarations count. Trump wins an otherwise equal run. Fully tied declarations do not score. A trump 11+12 is counted automatically as 20 Belote points which survive a failed contract.
+
+A hand contains 152 card points and ten for the last trick. The buyer’s team must beat the defence after counted bonuses. In Chute, the defence takes 162 and the declared announcements; buyers keep only their Belote. Exact equal totals are handled as Litige before the Chute check: the defence scores its total and the buyers’ total goes into the pot. The next decisive winner claims the pot. A side with no raw card points concedes 100 Capot. The default target is 500, with 250/1000 available for private tables. Equal final totals at the target require a further hand. The reference itself mentions different default targets in different sections; this app makes its choice explicit.
+
+This is the first playable implementation for friend testing. Regional rule adjustments should be agreed before ranked competition.

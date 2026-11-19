@@ -1,0 +1,5 @@
+import http from 'node:http';
+import worker from '../dist/server/index.js';
+class PreviewDatabase{row=null;prepare(sql){const db=this;let values;return {bind(...v){values=v;return this;},async first(){return db.row?{...db.row}:null;},async run(){if(sql.startsWith('INSERT')){if(!db.row)db.row={version:0,payload:values[0]};return {meta:{changes:1}};}if(sql.startsWith('UPDATE')){if(db.row.version!==values[1])return {meta:{changes:0}};db.row={version:db.row.version+1,payload:values[0]};return {meta:{changes:1}};}throw Error('Unexpected SQL');}};}}
+const env={DB:new PreviewDatabase()};
+http.createServer(async(req,res)=>{try{const data=[];for await(const b of req)data.push(b);const response=await worker.fetch(new Request('http://'+req.headers.host+req.url,{method:req.method,headers:req.headers,body:['GET','HEAD'].includes(req.method)?undefined:Buffer.concat(data)}),env);res.writeHead(response.status,Object.fromEntries(response.headers));res.end(Buffer.from(await response.arrayBuffer()));}catch(err){res.writeHead(500);res.end(err.message);}}).listen(3001,'0.0.0.0',()=>console.log('Dar Carta preview: http://localhost:3001'));
