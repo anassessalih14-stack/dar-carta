@@ -9,3 +9,7 @@
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition:none!important}}
 
 .hand-fan.short-hand{--fan-gap:75px}@media(max-width:760px){.hand-fan.short-hand{--fan-gap:57px}}@media(max-width:520px){.hand-fan.short-hand{--fan-gap:46px}}@media(orientation:landscape) and (max-height:580px){.hand-fan.short-hand{--fan-gap:46px}}
+.motion-card{position:absolute;display:block;direction:ltr;will-change:transform,opacity;transform-origin:center;filter:drop-shadow(1px 5px 5px #001e2366)}.motion-card>.card{width:100%!important;height:100%!important;position:static!important;margin:0!important;transform:none!important;animation:none!important}.motion-card .card img{width:100%;height:100%;object-fit:fill}.motion-active .result-panel{visibility:hidden}.motion-active .played-card{animation:none}.dealing-active .turn-message{visibility:hidden}.deal-caption{position:absolute;left:50%;top:57%;transform:translateX(-50%);padding:8px 20px;background:#123c30e8;border:1px solid #c6a85f66;border-radius:30px;font-size:14px;color:#f2d99b;white-space:nowrap}.card img{filter:none}
+.table-centre .card,.played-card{animation:none!important}
+.fan-slot:has(>button:not(.illegal)){z-index:8}.fan-slot:has(>button:not(.illegal)):hover{z-index:16}
+@media(max-width:520px) and (orientation:portrait){.declare-button{bottom:126px;left:50%;transform:translateX(-50%);white-space:nowrap}}

@@ -1,6 +1,6 @@
 # Dar Carta — traditional card club
 
-The refreshed interface uses a felt table, illustrated Spanish cards, fanned hands, player portraits, active-turn rings, a previous-trick panel, visible scores, shuffle/deal animations, and animated point gains. Darija, French and English are supported, with reduced-motion controls and responsive portrait/landscape layouts.
+The refreshed interface uses a felt table, illustrated Spanish cards, fanned hands, player portraits, active-turn rings, a previous-trick panel, visible scores, sequential shuffle/deal animations, card flips, sliding plays, winner-directed trick collection, and animated point gains. Darija, French and English are supported, with reduced-motion controls and responsive portrait/landscape layouts.
 
 ## Playable games
 
@@ -8,7 +8,7 @@ The refreshed interface uses a felt table, illustrated Spanish cards, fanned han
 - **Moroccan Balote**: 32 cards, four-player partnerships, two bidding rounds, optional forced take on a face-up 10, legal-card enforcement, declarations, automatic Belote/Rebelote, Chute, Litige, Capot and final-score deciders. Private tables can choose 250, 500 or 1000 points. This version defaults to 500 and uses an explicit rule that four-of-a-kind announcements outrank runs; house rules are documented in the game.
 - **Brisca**: 40 cards, two players or four-player partnerships, trump tricks and 120-point scoring.
 
-The Balote reference informed the traditional table style and documented Moroccan rules; its proprietary artwork and application code were not copied. Card artwork is separately licensed CC BY-SA 3.0: see `public/cards/CREDITS.md` and its per-file manifest.
+The Balote reference informed the traditional table style and documented Moroccan rules; its proprietary artwork and application code were not copied. The corrected Moroccan card faces use the Alb1bls CC0 scan; the retained card back is CC BY-SA 3.0: see `public/cards/CREDITS.md` and its per-file manifest.
 
 This deployment serves the card-game interface and private rooms together. Guests enter a nickname, create a room and share the six-character code. Friends enter nicknames and use Join a room. The host starts when all seats are occupied.
 

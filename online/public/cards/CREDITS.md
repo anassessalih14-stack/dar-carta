@@ -1,17 +1,11 @@
-# Spanish playing-card artwork
+# Card artwork
 
-Original artwork: **Basquetteur and Germarquezm**, via Wikimedia Commons.
+## Moroccan card faces
 
-Licensed under **Creative Commons Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)**: https://creativecommons.org/licenses/by-sa/3.0/
+Source: [Jeu de ronda](https://commons.wikimedia.org/wiki/File:Jeu_de_ronda.jpg), photographed by **Alb1bls**, 1 January 2025, published under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
 
-Source collection: https://commons.wikimedia.org/wiki/File:Baraja_espa%C3%B1ola_completa.png
+The traditional Moroccan / Spanish National pattern matches the reference deck supplied for Dar Carta. Changes: individual cards extracted, perspective corrected, photographed paper neutralised, colours and sharpness adjusted. The source scan is 1913 × 1141; extracted cards are 208 × 319. Per-card SHA-256 checksums are recorded in manifest.json. No artwork was taken from the Balote app or the retailer photograph.
 
-Each asset’s original file page, author and verified license are recorded in `manifest.json`. The complete artwork and any adaptations distributed here remain under CC BY-SA 3.0. Attribution does not imply endorsement by the artists. This license applies to these artwork assets, not automatically to unrelated application code.
+## Card back
 
-No artwork was copied from the Balote app.
-
-## Delivery and rendering
-
-Direct Wikimedia binary requests were rate-limited. The same CC BY-SA 3.0 artwork was obtained from the SVG conversion by **gjenkins20**, https://github.com/gjenkins20/spanish-playing-cards-svg at commit `907391d14b2b2d2fe41ec61207186ed64a838886`. Original artists and each original file license were independently verified through Wikimedia Commons image metadata.
-
-Changes for Dar Carta: the vector conversion was rasterized to 208 × 319 PNG, flattened onto an off-white background, and palette-optimized. These rendered artwork adaptations are distributed under **CC BY-SA 3.0** as well. The license permits commercial use subject to attribution and ShareAlike. Per-card original pages, mirror URLs, checksums and changes are recorded in `manifest.json`.
+Original artwork by Basquetteur and Germarquezm, via Wikimedia Commons and the gjenkins20/spanish-playing-cards-svg conversion (commit 907391d14b2b2d2fe41ec61207186ed64a838886). [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/). Rasterized, flattened and palette-optimized for Dar Carta. The back artwork adaptations remain under this license. These artwork licenses do not automatically apply to unrelated app code.
