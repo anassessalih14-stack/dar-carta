@@ -8,7 +8,7 @@ function apply(state,route,method,token,body,now){
   const {sessions,rooms}=state;
   for(const [code,r] of Object.entries(rooms))if(now-r.updated>6*3600000){for(const id of r.players)if(sessions[id])sessions[id].room=null;delete rooms[code];}
   for(const [id,p] of Object.entries(sessions))if(now-p.seen>24*3600000)delete sessions[id];
-  const options=b=>{if(!['ronda','brisca','balote'].includes(b.mode)||![2,4].includes(b.count)||b.mode==='balote'&&b.count!==4)error('Invalid table settings');return {mode:b.mode,count:b.count,target:[250,500,1000].includes(b.target)?b.target:500,forceJack:b.forceJack===true};};
+  const options=b=>{if(!['ronda','brisca','balote'].includes(b.mode)||!(b.mode==='balote'?[3,4]:[2,4]).includes(b.count))error('Invalid table settings');return {mode:b.mode,count:b.count,target:[250,500,1000].includes(b.target)?b.target:500,forceJack:b.forceJack===true};};
   const touch=r=>{r.updated=now;r.revision++;};
   const roomFor=p=>p.room?rooms[p.room]:null;
   const begin=r=>{r.game=createGame(r.mode,r.count,rng,{target:r.target,forceJack:r.forceJack});r.deadline=now+45000;touch(r);};
@@ -20,7 +20,7 @@ function apply(state,route,method,token,body,now){
   }
   const p=sessions[token];if(!p)error('Session expired. Enter your nickname again.',401);p.seen=now;
   let r=roomFor(p);
-  if(r?.game){r.game.rng=rng;if(['playing','bidding'].includes(r.game.phase)&&now>r.deadline){const seat=r.game.turn;const player=sessions[r.players[seat]];if(!player||now-player.seen>120000){r.game.phase='finished';r.game.winner=1-team(seat);r.forfeit=true;}else if(r.game.phase==='bidding')bid(r.game,seat,botBid(r.game));else play(r.game,seat,botCard(view(r.game,seat)));r.deadline=now+45000;touch(r);}}
+  if(r?.game){r.game.rng=rng;if(['playing','bidding'].includes(r.game.phase)&&now>r.deadline){const seat=r.game.turn;const player=sessions[r.players[seat]];if(!player||now-player.seen>120000){r.game.phase='finished';r.game.winner=r.count===3?null:1-team(seat);r.forfeit=true;}else if(r.game.phase==='bidding')bid(r.game,seat,botBid(r.game));else play(r.game,seat,botCard(view(r.game,seat)));r.deadline=now+45000;touch(r);}}
   if(route==='/api/me'&&method==='GET')return {name:p.name,room:r?snapshot(p,r):null};
   function make(kind){if(r)error('Leave your current room first');if(Object.keys(rooms).length>=32)error('All test tables are busy. Please try later.',503);let code;do{code=hex(3).toUpperCase();}while(rooms[code]);r={...options(body),code,kind,host:p.id,players:[p.id],created:now,updated:now,revision:0,game:null,deadline:0,forfeit:false};rooms[code]=r;p.room=code;return snapshot(p,r);}
   function join(target){if(r)error('Leave your current room first');if(!target||target.game||target.players.length>=target.count)error('Room unavailable or full',404);r=target;r.players.push(p.id);p.room=r.code;touch(r);if(r.kind==='random'&&r.players.length===r.count)begin(r);return snapshot(p,r);}
@@ -29,7 +29,7 @@ function apply(state,route,method,token,body,now){
   if(route==='/api/join')return join(rooms[String(body.code||'').trim().toUpperCase()]);
   if(route==='/api/match'){const o=options(body);const found=Object.values(rooms).find(r=>r.kind==='random'&&!r.game&&r.mode===o.mode&&r.count===o.count&&(o.mode!=='balote'||r.target===o.target&&r.forceJack===o.forceJack)&&r.players.length<r.count);return found?join(found):make('random');}
   if(route==='/api/leave'){
-    if(r){if(r.game&&r.game.phase!=='finished'){r.game.phase='finished';r.game.winner=1-team(r.players.indexOf(p.id));r.forfeit=true;}if(!r.game){r.players=r.players.filter(id=>id!==p.id);if(!r.players.length)delete rooms[r.code];else r.host=r.players[0];}touch(r);p.room=null;}return {ok:true};
+    if(r){if(r.game&&r.game.phase!=='finished'){r.game.phase='finished';r.game.winner=r.count===3?null:1-team(r.players.indexOf(p.id));r.forfeit=true;}if(!r.game){r.players=r.players.filter(id=>id!==p.id);if(!r.players.length)delete rooms[r.code];else r.host=r.players[0];}touch(r);p.room=null;}return {ok:true};
   }
   if(!r)error('No active room',404);
   if(route==='/api/start'){if(r.host!==p.id)error('Only the host can start',403);if(r.game||r.players.length!==r.count)error('Wait for every seat to fill');begin(r);return snapshot(p,r);}

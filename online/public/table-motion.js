@@ -38,7 +38,7 @@ export async function playTableMotion(s,scene,events,{me,card}){
         const old=step.seat===me?scene.hand.find(c=>c.id===step.card.id):null,origin=ctx.seat(step.seat);
         const target=Array.from(ctx.stage.querySelectorAll('.table-centre .card')).find(el=>el.querySelector('img')?.getAttribute('src')?.includes('/'+step.card.id+'.png'));
         const width=ctx.area.width<520?55:76,height=width*319/208;
-        const rel=(step.seat-me+s.count)%s.count,offset=s.count===2?(rel?{x:0,y:-24}:{x:0,y:24}):[{x:0,y:24},{x:35,y:0},{x:0,y:-25},{x:-35,y:0}][rel];
+        const rel=(step.seat-me+s.count)%s.count,offset=s.count===3?[{x:0,y:24},{x:35,y:-12},{x:-35,y:-12}][rel]:s.count===2?(rel?{x:0,y:-24}:{x:0,y:24}):[{x:0,y:24},{x:35,y:0},{x:0,y:-25},{x:-35,y:0}][rel];
         const dest=target?relative(target.getBoundingClientRect(),ctx.area):{x:ctx.area.width/2-width/2+offset.x,y:ctx.area.height*.43-height/2+offset.y,w:width,h:height};
         const start=old||{x:origin.x-width/2,y:origin.y-height/2,w:width,h:height};
         const el=ghost(ctx,card(step.card),dest),dx=start.x-dest.x,dy=start.y-dest.y;
